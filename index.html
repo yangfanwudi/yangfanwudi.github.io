@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>yangfanwudi · 作品导航 | Projects</title>
+<meta name="description" content="yangfanwudi 的作品导航：Haste 模组、3D 模型检视器、单文件知识库墨库、规则怪谈游戏、GitHub 趋势早报、AI 背单词等 8 个站点入口。A hub for eight small tools, games and apps.">
+<link rel="canonical" href="https://yangfanwudi.github.io/">
+<meta name="theme-color" content="#0b0f14">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yangfanwudi · 作品导航">
+<meta property="og:description" content="8 个作品入口：游戏模组、3D 工具、单文件知识库、规则怪谈游戏、开发工具与学习应用。">
+<meta property="og:url" content="https://yangfanwudi.github.io/">
+<style>
+:root{
+  --bg:#0b0f14;--bg-2:#0e141c;--card:#121a24;--card-2:#16202c;
+  --fg:#e8eef6;--mut:#9aa8b8;--dim:#6f7f92;
+  --line:rgba(255,255,255,.09);--line-2:rgba(255,255,255,.16);
+  --accent:#7c9cff;--accent-2:#58e0c0;
+  --max:1080px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;background:
+    radial-gradient(900px 500px at 15% -10%,rgba(124,156,255,.18),transparent 60%),
+    radial-gradient(800px 500px at 90% 0%,rgba(88,224,192,.12),transparent 55%),
+    var(--bg);
+  color:var(--fg);
+  font:16px/1.7 -apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+  -webkit-font-smoothing:antialiased;
+}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:var(--max);margin:0 auto;padding:0 22px}
+header{border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20;background:rgba(11,15,20,.82);backdrop-filter:blur(10px)}
+.bar{min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:10px;font-weight:700;letter-spacing:.02em}
+.brand .mark{width:28px;height:28px;border-radius:9px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:grid;place-items:center;color:#071018;font-size:14px;font-weight:800}
+.brand small{font-weight:500;color:var(--dim);font-size:12px;letter-spacing:.08em;text-transform:uppercase}
+#langBtn{appearance:none;border:1px solid var(--line-2);background:transparent;color:var(--mut);border-radius:999px;padding:5px 13px;font-size:13px;cursor:pointer;font-family:inherit}
+#langBtn:hover,#langBtn:focus-visible{border-color:var(--accent);color:var(--fg);outline:none}
+.hero{padding:72px 0 42px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:12.5px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent-2);margin:0 0 16px}
+.eyebrow::before{content:"";width:22px;height:1px;background:var(--accent-2);opacity:.7}
+h1{font-size:clamp(34px,6vw,58px);line-height:1.1;letter-spacing:-.03em;margin:0 0 18px;max-width:820px}
+h1 .grad{background:linear-gradient(100deg,var(--accent),var(--accent-2));-webkit-background-clip:text;background-clip:text;color:transparent}
+.lede{max-width:660px;color:var(--mut);font-size:17px;margin:0 0 8px}
+.meta{display:flex;flex-wrap:wrap;gap:8px 20px;margin-top:24px;font-size:13px;color:var(--dim)}
+.meta span{display:inline-flex;align-items:center;gap:7px}
+.meta i{width:6px;height:6px;border-radius:50%;background:var(--accent-2);font-style:normal}
+.section-head{display:flex;align-items:baseline;justify-content:space-between;gap:16px;margin:26px 0 18px}
+.section-head h2{font-size:14px;letter-spacing:.14em;text-transform:uppercase;color:var(--dim);margin:0;font-weight:600}
+.section-head span{font-size:13px;color:var(--dim)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:16px}
+.card{
+  display:flex;flex-direction:column;min-height:210px;padding:20px 20px 18px;
+  background:linear-gradient(180deg,var(--card),var(--card-2));
+  border:1px solid var(--line);border-radius:16px;position:relative;overflow:hidden;
+  transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;
+}
+.card::after{content:"";position:absolute;inset:auto -30% -55% auto;width:240px;height:240px;border-radius:50%;background:radial-gradient(circle,var(--glow,rgba(124,156,255,.18)),transparent 65%);opacity:.9;pointer-events:none}
+.card:hover,.card:focus-visible{transform:translateY(-3px);border-color:var(--line-2);box-shadow:0 16px 40px rgba(0,0,0,.32);outline:none}
+.card-top{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px}
+.tag{font-size:11.5px;letter-spacing:.08em;color:var(--accent-2);border:1px solid rgba(88,224,192,.28);background:rgba(88,224,192,.08);padding:3px 9px;border-radius:999px;white-space:nowrap}
+.arrow{color:var(--dim);font-size:18px;line-height:1;transition:transform .2s ease,color .2s ease}
+.card:hover .arrow{transform:translate(2px,-2px);color:var(--fg)}
+.card h3{font-size:19px;line-height:1.35;margin:0 0 8px;letter-spacing:-.01em}
+.card h3 small{display:block;font-size:12.5px;font-weight:500;color:var(--dim);margin-top:3px;letter-spacing:.02em}
+.card p{margin:0;color:var(--mut);font-size:13.8px;line-height:1.65}
+.card .site{margin-top:auto;padding-top:16px;font-size:12px;color:var(--dim);letter-spacing:.02em}
+.about{margin:56px 0 0;padding:28px 0 0;border-top:1px solid var(--line);display:grid;grid-template-columns:1.2fr .8fr;gap:28px}
+.about h2{font-size:18px;margin:0 0 10px}
+.about p{margin:0 0 10px;color:var(--mut);font-size:14.5px}
+.about a{color:var(--accent);border-bottom:1px solid rgba(124,156,255,.35)}
+.facts{display:grid;gap:10px;align-content:start}
+.fact{display:flex;justify-content:space-between;gap:14px;padding:10px 0;border-bottom:1px dashed var(--line);font-size:13px;color:var(--dim)}
+.fact b{color:var(--fg);font-weight:600}
+footer{margin-top:54px;border-top:1px solid var(--line);padding:24px 0 40px;font-size:12.5px;color:var(--dim)}
+.foot{display:flex;flex-wrap:wrap;gap:8px 20px;justify-content:space-between}
+.foot nav{display:flex;flex-wrap:wrap;gap:8px 18px}
+.foot a{border-bottom:1px solid transparent}
+.foot a:hover{color:var(--fg);border-color:var(--line-2)}
+html[lang="en"] [data-lang="zh"],html[lang="zh-CN"] [data-lang="en"]{display:none!important}
+@media(max-width:720px){
+  .hero{padding:52px 0 30px}
+  .about{grid-template-columns:1fr;gap:18px}
+  .grid{grid-template-columns:1fr}
+  .card{min-height:0}
+}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "name": "yangfanwudi · Projects",
+  "url": "https://yangfanwudi.github.io/",
+  "inLanguage": ["zh-CN", "en"],
+  "description": "A hub for eight small tools, games and apps by yangfanwudi."
+}
+</script>
+</head>
+<body>
+<header>
+  <div class="wrap bar">
+    <a class="brand" href="/"><span class="mark">Y</span><span>yangfanwudi<br><small>Projects · 作品导航</small></span></a>
+    <button id="langBtn" type="button" aria-label="Switch to English">EN</button>
+  </div>
+</header>
+
+<main class="wrap">
+  <section class="hero">
+    <p class="eyebrow"><span data-lang="zh">个人作品导航</span><span data-lang="en">Personal project hub</span></p>
+    <h1>
+      <span data-lang="zh">做工具、游戏<br>和<span class="grad">小应用</span>。</span>
+      <span data-lang="en">Small tools, games<br>and <span class="grad">apps</span>.</span>
+    </h1>
+    <p class="lede">
+      <span data-lang="zh">这里汇集了我用 AI 辅助完成的 8 个站点。落地页只写真实的功能、数据和进度，不编造。每个站点都有自己的反馈入口。</span>
+      <span data-lang="en">Eight sites built with AI assistance. Each landing page sticks to real features, numbers and progress — no invented roadmaps. Every site has its own feedback channel.</span>
+    </p>
+    <div class="meta">
+      <span><i></i><span data-lang="zh">8 个站点</span><span data-lang="en">8 sites</span></span>
+      <span><i></i><span data-lang="zh">全部托管于 GitHub Pages</span><span data-lang="en">All on GitHub Pages</span></span>
+      <span><i></i><span data-lang="zh">零外部依赖</span><span data-lang="en">Zero external dependencies</span></span>
+    </div>
+  </section>
+
+  <div class="section-head">
+    <h2><span data-lang="zh">作品</span><span data-lang="en">Projects</span></h2>
+    <span><span data-lang="zh">按兴趣点开即可</span><span data-lang="en">Pick what interests you</span></span>
+  </div>
+
+  <div class="grid">
+    <a class="card" href="https://yangfanwudi.github.io/theboys-site/" style="--glow:rgba(217,44,53,.20)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">游戏模组</span><span data-lang="en">Game mod</span></span><span class="arrow">↗</span></div>
+      <h3>Haste × The Boys <small><span data-lang="zh">角色模组展示站</span><span data-lang="en">Character pack showcase</span></small></h3>
+      <p><span data-lang="zh">祖国人与火车头两套公开皮肤，附 AethaModelSwap 前置依赖与完整安装步骤。非官方粉丝作品。</span><span data-lang="en">Two public skins — Homelander and A-Train — with the AethaModelSwap dependency and full install steps. Unofficial fan work.</span></p>
+      <span class="site">theboys-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/model-inspector-site/" style="--glow:rgba(94,225,255,.18)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">3D 工具</span><span data-lang="en">3D tool</span></span><span class="arrow">↗</span></div>
+      <h3>Model Inspector <small><span data-lang="zh">浏览器内模型检视器</span><span data-lang="en">Browser-based model inspector</span></small></h3>
+      <p><span data-lang="zh">拖拽打开 glb/gltf，三点布光与程序化展台，PBR 材质检视，4K 透明背景导出，离线可用。</span><span data-lang="en">Drop in glb/gltf, inspect under a three-point rig on a procedural pedestal, switch to PBR mode, export 4K transparent PNGs — offline.</span></p>
+      <span class="site">model-inspector-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/moku-site/" style="--glow:rgba(124,156,255,.18)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">效率工具</span><span data-lang="en">Productivity</span></span><span class="arrow">↗</span></div>
+      <h3>墨库 Moku <small><span data-lang="zh">单文件知识库与看板</span><span data-lang="en">Single-file knowledge base</span></small></h3>
+      <p><span data-lang="zh">一个 HTML 文件搞定 Markdown 编辑与看板，断网可用；ZIP 下载附 SHA256 校验值。</span><span data-lang="en">Markdown editing and a kanban view in one HTML file, fully offline. ZIP download with a published SHA256 checksum.</span></p>
+      <span class="site">moku-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/yongye-site/" style="--glow:rgba(159,232,192,.18)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">游戏</span><span data-lang="en">Game</span></span><span class="arrow">↗</span></div>
+      <h3>永昼便利店 <small><span data-lang="zh">伪人规则怪谈</span><span data-lang="en">Rules horror</span></small></h3>
+      <p><span data-lang="zh">免费网页规则怪谈：12 条守则、22 个节点、24 种结局，点开就能玩，手机也行。正文中文。</span><span data-lang="en">A free rules-horror browser game: 12 rules, 22 nodes, 24 endings. Play instantly, mobile included. Game text is Chinese.</span></p>
+      <span class="site">yongye-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/github-daily-site/" style="--glow:rgba(88,166,255,.18)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">开发工具</span><span data-lang="en">Dev tool</span></span><span class="arrow">↗</span></div>
+      <h3>GitHub 热门推送 <small><span data-lang="zh">每日趋势中文早报</span><span data-lang="en">Daily trending digest</span></small></h3>
+      <p><span data-lang="zh">Python 定时抓取 GitHub 趋势，去重评分后生成 Top 12 中文早报，每天 20:00 自动运行。</span><span data-lang="en">A Python tool that fetches GitHub trending, dedupes and scores it, and publishes a top-12 Chinese digest every evening at 20:00.</span></p>
+      <span class="site">github-daily-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/ziliao-mini-site/" style="--glow:rgba(124,58,237,.18)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">开发中</span><span data-lang="en">In development</span></span><span class="arrow">↗</span></div>
+      <h3>ExamFlow <small><span data-lang="zh">刷题小程序</span><span data-lang="en">Quiz mini program</span></small></h3>
+      <p><span data-lang="zh">全考种题库、错题本、富文本渲染与导出。尚未发布，进度和接口数量全部来自真实开发记录。</span><span data-lang="en">Question banks across exam types, a wrong-answer book, rich-text rendering and export. Not yet published; milestones come from real development records.</span></p>
+      <span class="site">ziliao-mini-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/beidanci-site/" style="--glow:rgba(185,58,34,.20)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">学习应用</span><span data-lang="en">Learning app</span></span><span class="arrow">↗</span></div>
+      <h3>AI 背单词 <small><span data-lang="zh">复习优先的间隔重复</span><span data-lang="en">Reviews-first SRS</span></small></h3>
+      <p><span data-lang="zh">每日新词名额、三档评分、五本词书、多端同步；AI 讲解卡、AI 测验、问 AI 与每日小故事。</span><span data-lang="en">A daily new-word quota, three-grade rating, five word books, cross-device sync, plus AI explainer cards, quizzes, ask-AI and a daily story.</span></p>
+      <span class="site">beidanci-site</span>
+    </a>
+
+    <a class="card" href="https://yangfanwudi.github.io/mt-site/" style="--glow:rgba(217,179,108,.20)">
+      <div class="card-top"><span class="tag"><span data-lang="zh">游戏攻略</span><span data-lang="en">Game guide</span></span><span class="arrow">↗</span></div>
+      <h3>我叫MT：崛起 <small><span data-lang="zh">非官方玩家攻略站</span><span data-lang="en">Unofficial fan guide</span></small></h3>
+      <p><span data-lang="zh">英雄图鉴、阵容推荐、新手入门、资源规划与交流区。与游戏官方无关，内容仅供参考。</span><span data-lang="en">Hero reference, lineup recommendations, beginner tips, resource planning and a community area. Unofficial; for reference only.</span></p>
+      <span class="site">mt-site</span>
+    </a>
+  </div>
+
+  <section class="about" id="about">
+    <div>
+      <h2><span data-lang="zh">关于这个总站</span><span data-lang="en">About this hub</span></h2>
+      <p><span data-lang="zh">我是一个个人开发者，用 AI 辅助做工具、游戏和小应用。这个总站只做一件事：把 8 个分散的作品放在一个稳定的入口里，方便你找到它们，也方便搜索引擎理解站群结构。</span><span data-lang="en">I am an independent developer building tools, games and small apps with AI assistance. This hub does one thing: gives the eight separate projects a stable entry point, both for visitors and for search engines.</span></p>
+      <p><span data-lang="zh">每个作品站都有自己的反馈页；如果链接失效或页面有问题，欢迎邮件告诉我：<a href="mailto:898249759@qq.com">898249759@qq.com</a>。</span><span data-lang="en">Each project has its own feedback page. If a link breaks or a page misbehaves, email me: <a href="mailto:898249759@qq.com">898249759@qq.com</a>.</span></p>
+    </div>
+    <div class="facts">
+      <div class="fact"><span data-lang="zh">站点数量</span><span data-lang="en">Sites</span><b>8</b></div>
+      <div class="fact"><span data-lang="zh">托管</span><span data-lang="en">Hosting</span><b>GitHub Pages</b></div>
+      <div class="fact"><span data-lang="zh">前端</span><span data-lang="en">Frontend</span><b>Static HTML</b></div>
+      <div class="fact"><span data-lang="zh">反馈</span><span data-lang="en">Feedback</span><b>Email</b></div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <span>© 2026 yangfanwudi · <span data-lang="zh">个人作品导航</span><span data-lang="en">Personal project hub</span></span>
+    <nav aria-label="页脚导航 / Footer navigation">
+      <a href="#about"><span data-lang="zh">关于</span><span data-lang="en">About</span></a>
+      <a href="privacy.html"><span data-lang="zh">隐私</span><span data-lang="en">Privacy</span></a>
+      <a href="mailto:898249759@qq.com"><span data-lang="zh">反馈邮箱</span><span data-lang="en">Email</span></a>
+      <a href="https://github.com/yangfanwudi" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function () {
+  var btn = document.getElementById('langBtn');
+  function apply(lang) {
+    var en = lang === 'en';
+    document.documentElement.lang = en ? 'en' : 'zh-CN';
+    btn.textContent = en ? '中文' : 'EN';
+    btn.setAttribute('aria-label', en ? '切换到中文' : 'Switch to English');
+  }
+  var saved = 'zh';
+  try { saved = localStorage.getItem('hub-lang') || 'zh'; } catch (e) {}
+  apply(saved);
+  btn.addEventListener('click', function () {
+    var next = document.documentElement.lang === 'en' ? 'zh' : 'en';
+    try { localStorage.setItem('hub-lang', next); } catch (e) {}
+    apply(next);
+  });
+})();
+</script>
+</body>
+</html>
