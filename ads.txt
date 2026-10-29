@@ -1,3 +1,1 @@
-# 尚未启用 Google AdSense。
-# 拿到发布商 ID 后，把下面一行的 pub-XXXXXXXXXXXXXXXX 换成真实 ID，并取消注释：
-# google.com, pub-XXXXXXXXXXXXXXXX, DIRECT, f08c47fec0942fa0
+google.com, pub-4092161168689297, DIRECT, f08c47fec0942fa0
