@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<title>BOJI LAB · 回复话术（复制板）</title>
+<style>
+  :root{--bg:#0b0f0c;--panel:#121912;--line:#24321f;--ink:#e8f3e9;--dim:#9db3a0;--neon:#b6ff3d}
+  *{box-sizing:border-box}
+  body{margin:0;background:var(--bg);color:var(--ink);font:16px/1.7 -apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif;padding:22px 16px 60px}
+  .wrap{max-width:720px;margin:0 auto}
+  .brand{color:var(--neon);letter-spacing:.18em;font-size:12px;font-weight:700;margin:0 0 8px}
+  h1{font-size:28px;margin:0 0 6px;letter-spacing:.02em}
+  .lead{color:var(--dim);font-size:14px;margin:0 0 10px}
+  .url{display:inline-block;color:var(--neon);font-size:13px;border:1px dashed rgba(182,255,61,.35);border-radius:8px;padding:6px 10px;margin:0 0 14px}
+  .tip{border:1px solid rgba(182,255,61,.22);background:rgba(182,255,61,.06);color:#c9d8c6;border-radius:12px;padding:11px 13px;font-size:13px;line-height:1.65;margin:0 0 14px}
+  .tip b{color:var(--neon)}
+  .warn{border:1px solid rgba(255,196,0,.35);background:rgba(255,196,0,.08);color:#ffd76a;border-radius:12px;padding:12px 14px;font-size:13px;line-height:1.65;margin:0 0 18px}
+  .card{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:14px 14px 12px;margin:0 0 12px}
+  .card h2{font-size:14px;color:var(--neon);margin:0 0 8px;letter-spacing:.04em}
+  .text{white-space:pre-wrap;font-size:15px;line-height:1.7;color:var(--ink);margin:0 0 12px}
+  button{appearance:none;border:1px solid rgba(182,255,61,.45);background:rgba(182,255,61,.1);color:var(--neon);border-radius:10px;padding:10px 14px;font:inherit;font-size:14px;font-weight:700;cursor:pointer}
+  button:active{transform:scale(.98)}
+  .foot{color:var(--dim);font-size:12px;line-height:1.8;margin-top:24px}
+  .toast{position:fixed;left:50%;bottom:28px;transform:translateX(-50%);background:var(--neon);color:#0b0f0c;font-weight:700;font-size:14px;padding:10px 18px;border-radius:999px;opacity:0;pointer-events:none;transition:.2s}
+  .toast.show{opacity:1}
+</style>
+</head>
+<body>
+<main class="wrap">
+  <p class="brand">BOJI LAB · 回复话术</p>
+  <h1>回复话术 · 复制板</h1>
+  <p class="lead">点一下按钮就能复制；这是给你自己用的，不用发给别人。</p>
+  <p class="url">yangfanwudi.github.io/copy</p>
+
+  <div class="tip">
+    <b>把它放到手机主屏幕：</b>iPhone Safari 点「分享」→「添加到主屏幕」；安卓 Chrome 点右上角「⋮」→「添加到主屏幕」。以后点图标就能一键复制。
+  </div>
+
+  <div class="warn">
+    评论区只写「扣 1」，不要写“私信发链接”。私信只发给主动扣 1 的人，别群发；不要发二维码、微信、二维码截图。
+  </div>
+
+  <section class="card">
+    <h2>置顶评论</h2>
+    <p class="text" id="c1">想玩的扣 1，我看看六种人格能不能凑齐。</p>
+    <button data-copy="c1">复制置顶评论</button>
+  </section>
+
+  <section class="card">
+    <h2>公开回复（有人扣 1）</h2>
+    <p class="text" id="c2">收到，入口发你；小红书搜「薄肌研究所」也能找到我。</p>
+    <button data-copy="c2">复制公开回复</button>
+  </section>
+
+  <section class="card">
+    <h2>私信（只发主动扣 1 的人）</h2>
+    <p class="text" id="c3">入口：https://yangfanwudi.github.io/boji-lab/ （复制到浏览器打开）</p>
+    <button data-copy="c3">复制私信</button>
+  </section>
+
+  <section class="card">
+    <h2>问「在哪测」</h2>
+    <p class="text" id="c4">小红书搜「薄肌研究所」，主页第一个就是。</p>
+    <button data-copy="c4">复制回复</button>
+  </section>
+
+  <section class="card">
+    <h2>问「准吗 / 我是哪种」</h2>
+    <p class="text" id="c5">娱乐测试，别当真；你测出哪个？评论区对号入座。</p>
+    <button data-copy="c5">复制回复</button>
+  </section>
+
+  <section class="card">
+    <h2>问「怎么保存」</h2>
+    <p class="text" id="c6">结果页点「保存结果图」，或者长按图片存相册。</p>
+    <button data-copy="c6">复制回复</button>
+  </section>
+
+  <section class="card">
+    <h2>遇到身材焦虑 / 负面评论</h2>
+    <p class="text" id="c7">不制造身材焦虑，测试只是玩梗；练不练、怎么练，按自己节奏来。</p>
+    <button data-copy="c7">复制回复</button>
+  </section>
+
+  <p class="foot">
+    短域名上线后，把私信里的长链接替换成 <b>boji.vocabfan.online</b>。<br>
+    站内不要放二维码/网址/微信；被限流不划算。
+  </p>
+</main>
+
+<div class="toast" id="toast">已复制</div>
+<script>
+  const toast = document.getElementById('toast');
+  function showToast(msg) {
+    toast.textContent = msg || '已复制';
+    toast.classList.add('show');
+    clearTimeout(showToast.t);
+    showToast.t = setTimeout(() => toast.classList.remove('show'), 1200);
+  }
+  async function copyText(text) {
+    try {
+      await navigator.clipboard.writeText(text);
+      showToast('已复制');
+    } catch (e) {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.opacity = '0';
+      document.body.appendChild(ta);
+      ta.select();
+      document.execCommand('copy');
+      ta.remove();
+      showToast('已复制');
+    }
+  }
+  document.querySelectorAll('[data-copy]').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.copy);
+      if (el) copyText(el.innerText.trim());
+    });
+  });
+</script>
+</body>
+</html>
