@@ -103,9 +103,18 @@
       tab: "9 个站",
       title: "9 个免费网站，够我摸鱼一整周",
       link: "https://xhslink.cn/o/2R2PDJgB0gp",
-      comment: "想要哪个扣编号，我发你：1 数独 2 背单词 3 永昼 4 墨库 5 3D 6 钢琴 7 不烧心 8 GitHub 9 MT",
+      comment: "想要哪个扣编号，我发你：1 数独 2 背单词 3 永昼 4 墨库 5 3D 6 钢琴 7 不烧心 8 GitHub 9 MT 10 圈养羊饭",
       reply: "收到，入口发你；合集页：https://yangfanwudi.github.io/",
       dm: "合集入口：https://yangfanwudi.github.io/ （复制到浏览器打开）"
+    },
+    {
+      id: "quanyang",
+      tab: "圈养羊饭",
+      title: "我把「圈养羊饭」做成了网页游戏",
+      link: "",
+      comment: "想玩的扣 1，我发你入口；这是我新做的单文件小游戏。",
+      reply: "收到，入口发你；搜「圈养羊饭」也能找到我。",
+      dm: "入口：https://yangfanwudi.github.io/quanyang-yangfan/ （复制到浏览器打开）"
     }
   ];
 
@@ -119,7 +128,7 @@
     panel.innerHTML = `
       <div class="card">
         <h2>${p.title}</h2>
-        <p class="meta">帖子链接：<a href="${p.link}" target="_blank" rel="noopener">${p.link}</a></p>
+        <p class="meta">${p.link ? `帖子链接：<a href="${p.link}" target="_blank" rel="noopener">${p.link}</a>` : "这条还没发小红书；入口先用下面的私信。"}</p>
 
         <h3>置顶评论</h3>
         <p class="text" id="c-${p.id}-comment">${p.comment}</p>
