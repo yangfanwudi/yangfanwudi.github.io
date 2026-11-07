@@ -1,84 +1,87 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <meta name="color-scheme" content="dark" />
-  <title>三国杀·台词研习册（离线双击版）</title>
-  <link rel="stylesheet" href="app/assets/style.css?v=1.8.4" />
-</head>
-<body>
-  <header class="topbar">
-    <a class="brand" href="#/today" aria-label="回到今日">
-      <span class="brand-mark">杀</span>
-      <span class="brand-text"><strong>台词研习册</strong><small>三国杀 · 每日一将</small></span>
-    </a>
-    <nav class="nav" aria-label="主导航">
-      <a href="#/today" data-nav="today">今日</a>
-      <a href="#/browse" data-nav="browse">武将</a>
-      <a href="#/lines" data-nav="lines">台词</a>
-      <a href="#/stats" data-nav="stats">统计</a>
-      <a href="#/about" data-nav="about">关于</a>
-    </nav>
-  </header>
-  <div id="boot" class="boot">
-    <div class="boot-card">
-      <div class="loading-seal">杀</div>
-      <h1>正在展开竹简</h1>
-      <p id="boot-status">正在加载离线数据（约 7 MB）……</p>
-      <div class="boot-bar"><span></span></div>
-      <p id="boot-detail" class="small muted">首次加载可能需要几秒，请稍候</p>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark" />
+    <title>三国杀·台词研习册</title>
+    <link rel="stylesheet" href="assets/style.css?v=1.8.4" />
+  </head>
+  <body>
+    <header class="topbar">
+      <a class="brand" href="#/today" aria-label="回到今日">
+        <span class="brand-mark">杀</span>
+        <span class="brand-text">
+          <strong>台词研习册</strong>
+          <small>三国杀 · 每日一将</small>
+        </span>
+      </a>
+      <nav class="nav" aria-label="主导航">
+        <a href="#/today" data-nav="today">今日</a>
+        <a href="#/browse" data-nav="browse">武将</a>
+        <a href="#/lines" data-nav="lines">台词</a>
+        <a href="#/stats" data-nav="stats">统计</a>
+        <a href="#/about" data-nav="about">关于</a>
+      </nav>
+    </header>
+
+    <div id="boot" class="boot">
+      <div class="boot-card">
+        <div class="loading-seal">杀</div>
+        <h1>正在展开竹简</h1>
+        <p id="boot-status">正在加载武将数据……</p>
+        <div class="boot-bar"><span></span></div>
+        <p id="boot-detail" class="small muted">首次加载可能需要几秒，请稍候</p>
+      </div>
     </div>
-  </div>
 
-  <main id="app" class="app">
-    <section class="loading"><div class="loading-seal">杀</div><p>正在展开竹简……</p></section>
-  </main>
-  <footer class="footer">
-    <span>离线双击版 · 素材版权归游卡及相关创作者所有 · 仅个人学习</span>
-    <span>数据 d9d0d28</span>
-  </footer>
-  <audio id="player" preload="none"></audio>
-  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+    <main id="app" class="app">
+      <section class="loading">
+        <div class="loading-seal">杀</div>
+        <p>正在展开竹简……</p>
+      </section>
+    </main>
 
+    <footer class="footer">
+      <span>素材版权归游卡及相关创作者所有 · 仅个人学习使用</span>
+      <span id="footer-commit"></span>
+    </footer>
+
+    <audio id="player" preload="none"></audio>
+    <div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+      <script src="assets/config.js"></script>
   <script>
-    // 有本地素材就本地优先，缺图/缺语音再回退 jsDelivr。
-    window.SGS_CONFIG = {
-      mediaBase: "app/media/",
-      nonamePrefix: "noname/",
-      bwikiPrefix: "bwiki/",
-      mediaMode: "local-first",
-      remoteCommit: "d9d0d28a06c88a3b556e914cf5abb6cfe90e206a",
-      remoteTemplate: "https://cdn.jsdelivr.net/gh/libnoname/noname@{commit}/apps/core/",
-      allowRemote: true
-    };
-  </script>
-  <script src="app/data/all.js" onerror="document.getElementById('boot-status').textContent='离线数据加载失败，请重新运行 build_standalone';"></script>
-  <script>
-    // 把 app.js 的 data/*.json 请求重定向到内嵌数据；file:// 下也能用。
+    // 按武将 id 分片加载，首屏不再下载全部 2,582 名武将
     (function () {
-      var D = window.__SGS_DATA__;
-      var realFetch = window.fetch.bind(window);
-      function json(obj) {
-        return Promise.resolve(new Response(JSON.stringify(obj), {
-          status: 200,
-          headers: { "Content-Type": "application/json" }
-        }));
-      }
-      window.fetch = function (input, init) {
-        var url = typeof input === "string" ? input : (input && input.url) || "";
-        if (url === "data/index.json") return json(D.index);
-        if (url === "data/search.json") return json(D.search);
-        if (url === "data/lines.json") return json(D.lines);
-        var m = url.match(/^data\/heroes\/(.+)\.json$/);
+      const cache = {};
+      const realFetch = window.fetch.bind(window);
+      const shardOf = (id) => {
+        let h = 0;
+        for (const ch of id) h = (h + ch.charCodeAt(0)) % 26;
+        return h;
+      };
+      window.fetch = async function (input, init) {
+        const url = typeof input === "string" ? input : (input && input.url) || "";
+        const m = url.match(/(?:^|\/)data\/heroes\/(.+)\.json$/);
         if (m) {
-          var id = decodeURIComponent(m[1]);
-          if (D.heroes[id]) return json(D.heroes[id]);
+          const id = decodeURIComponent(m[1]);
+          const shard = shardOf(id);
+          if (!cache[shard]) {
+            cache[shard] = realFetch(`data/hero-shards/${shard}.json`).then(r => r.json());
+          }
+          const map = await cache[shard];
+          if (map && map[id]) {
+            return new Response(JSON.stringify(map[id]), {
+              status: 200,
+              headers: { "Content-Type": "application/json" }
+            });
+          }
         }
         return realFetch(input, init);
       };
     })();
   </script>
-  <script src="app/assets/app.js?v=1.8.4"></script>
-</body>
+    <script type="module" src="assets/app.js?v=1.8.4"></script>
+  </body>
 </html>

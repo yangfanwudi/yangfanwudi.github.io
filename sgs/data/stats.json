@@ -1,0 +1,251 @@
+{
+  "version": 1,
+  "generatedAt": "2026-11-07T15:40:27.733Z",
+  "commit": "d9d0d28a06c88a3b556e914cf5abb6cfe90e206a",
+  "repo": "libnoname/noname",
+  "counts": {
+    "heroes": 2582,
+    "lines": 8665,
+    "packs": 26,
+    "voiceKeys": 8760,
+    "consumedVoices": 8665,
+    "unmatchedVoices": 457,
+    "matchRate": 0.989,
+    "withImage": 2536,
+    "withAudio": 1587,
+    "withLines": 1596
+  },
+  "packs": [
+    {
+      "pack": "standard",
+      "packName": "标准",
+      "count": 33,
+      "withImage": 33,
+      "withAudio": 30,
+      "withLines": 30
+    },
+    {
+      "pack": "shenhua",
+      "packName": "神话再临",
+      "count": 48,
+      "withImage": 48,
+      "withAudio": 48,
+      "withLines": 48
+    },
+    {
+      "pack": "extra",
+      "packName": "经典神将",
+      "count": 12,
+      "withImage": 12,
+      "withAudio": 12,
+      "withLines": 12
+    },
+    {
+      "pack": "yijiang",
+      "packName": "一将成名",
+      "count": 72,
+      "withImage": 72,
+      "withAudio": 72,
+      "withLines": 72
+    },
+    {
+      "pack": "refresh",
+      "packName": "界限突破",
+      "count": 128,
+      "withImage": 126,
+      "withAudio": 126,
+      "withLines": 126
+    },
+    {
+      "pack": "sp",
+      "packName": "璀璨星河",
+      "count": 219,
+      "withImage": 214,
+      "withAudio": 206,
+      "withLines": 206
+    },
+    {
+      "pack": "sp2",
+      "packName": "系列专属",
+      "count": 114,
+      "withImage": 113,
+      "withAudio": 103,
+      "withLines": 103
+    },
+    {
+      "pack": "newjiang",
+      "packName": "新一将成名",
+      "count": 43,
+      "withImage": 42,
+      "withAudio": 38,
+      "withLines": 38
+    },
+    {
+      "pack": "onlyOL",
+      "packName": "OL专属",
+      "count": 86,
+      "withImage": 78,
+      "withAudio": 66,
+      "withLines": 67
+    },
+    {
+      "pack": "yingbian",
+      "packName": "文德武备",
+      "count": 23,
+      "withImage": 23,
+      "withAudio": 23,
+      "withLines": 23
+    },
+    {
+      "pack": "clan",
+      "packName": "门阀士族",
+      "count": 41,
+      "withImage": 38,
+      "withAudio": 39,
+      "withLines": 39
+    },
+    {
+      "pack": "huicui",
+      "packName": "群英荟萃",
+      "count": 120,
+      "withImage": 118,
+      "withAudio": 108,
+      "withLines": 108
+    },
+    {
+      "pack": "xianding",
+      "packName": "限定专属",
+      "count": 220,
+      "withImage": 210,
+      "withAudio": 190,
+      "withLines": 190
+    },
+    {
+      "pack": "mobile",
+      "packName": "移动版",
+      "count": 205,
+      "withImage": 201,
+      "withAudio": 169,
+      "withLines": 172
+    },
+    {
+      "pack": "shiji",
+      "packName": "始计篇",
+      "count": 48,
+      "withImage": 48,
+      "withAudio": 48,
+      "withLines": 48
+    },
+    {
+      "pack": "sb",
+      "packName": "谋攻篇",
+      "count": 55,
+      "withImage": 54,
+      "withAudio": 54,
+      "withLines": 54
+    },
+    {
+      "pack": "bingshi",
+      "packName": "兵势篇",
+      "count": 36,
+      "withImage": 31,
+      "withAudio": 29,
+      "withLines": 29
+    },
+    {
+      "pack": "tw",
+      "packName": "外服武将",
+      "count": 166,
+      "withImage": 165,
+      "withAudio": 94,
+      "withLines": 97
+    },
+    {
+      "pack": "collab",
+      "packName": "联动卡",
+      "count": 91,
+      "withImage": 91,
+      "withAudio": 56,
+      "withLines": 56
+    },
+    {
+      "pack": "old",
+      "packName": "怀旧",
+      "count": 79,
+      "withImage": 78,
+      "withAudio": 21,
+      "withLines": 21
+    },
+    {
+      "pack": "offline",
+      "packName": "线下武将",
+      "count": 385,
+      "withImage": 385,
+      "withAudio": 20,
+      "withLines": 22
+    },
+    {
+      "pack": "jsrg",
+      "packName": "江山如故",
+      "count": 76,
+      "withImage": 76,
+      "withAudio": 19,
+      "withLines": 19
+    },
+    {
+      "pack": "sxrm",
+      "packName": "蚀心入魔",
+      "count": 27,
+      "withImage": 27,
+      "withAudio": 5,
+      "withLines": 5
+    },
+    {
+      "pack": "sixiang",
+      "packName": "四象封印",
+      "count": 101,
+      "withImage": 101,
+      "withAudio": 0,
+      "withLines": 0
+    },
+    {
+      "pack": "diy",
+      "packName": "DIY",
+      "count": 66,
+      "withImage": 66,
+      "withAudio": 0,
+      "withLines": 0
+    },
+    {
+      "pack": "key",
+      "packName": "Key",
+      "count": 88,
+      "withImage": 86,
+      "withAudio": 11,
+      "withLines": 11
+    }
+  ],
+  "unmatchedByPack": {
+    "bingshi": 2,
+    "collab": 2,
+    "extra": 29,
+    "huicui": 38,
+    "jsrg": 3,
+    "key": 3,
+    "mobile": 83,
+    "offline": 16,
+    "old": 4,
+    "onlyOL": 11,
+    "refresh": 24,
+    "sb": 14,
+    "shenhua": 20,
+    "shiji": 17,
+    "sp": 70,
+    "sp2": 26,
+    "standard": 2,
+    "tw": 32,
+    "xianding": 39,
+    "yijiang": 16,
+    "yingbian": 6
+  }
+}
