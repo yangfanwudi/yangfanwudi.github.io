@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>打怪升级 · 日常任务看板</title>
+  <link rel="icon" type="image/png" href="assets/icons/logo.png">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <img class="brand-logo" src="assets/icons/logo.png" alt="logo">
+      <div>
+        <h1>打怪升级</h1>
+        <span class="sub">日常任务看板 · 把日常变成讨伐之旅</span>
+      </div>
+    </div>
+    <div class="player">
+      <div class="lv-badge" id="lvBadge">Lv 1</div>
+      <div class="player-main">
+        <div class="player-top">
+          <span class="player-title" id="playerTitle">见习勇者</span>
+          <span class="streak" id="streakTag">🔥 连续 0 天 · 最佳 0 天</span>
+        </div>
+        <div class="xpbar">
+          <div class="xpbar-fill" id="xpFill" style="width:0%"></div>
+          <span class="xpbar-text" id="xpText">0 / 100 XP</span>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="boss-banner" id="bossBanner"></section>
+
+  <main class="board" id="board"></main>
+
+  <div class="totals-row" id="totalsRow"></div>
+
+  <section class="stats">
+    <div class="stat-card">
+      <h3>📈 近7日战果</h3>
+      <div id="barChart"></div>
+      <div class="chart-total" id="chartTotal"></div>
+    </div>
+    <div class="stat-card">
+      <h3>🧭 能力四维</h3>
+      <div id="radar"></div>
+    </div>
+    <div class="stat-card">
+      <h3>🎖️ 装备栏</h3>
+      <div id="equipGrid" class="equip-grid"></div>
+    </div>
+    <div class="stat-card">
+      <h3>📊 战绩速览</h3>
+      <div id="quickStats" class="quick-grid"></div>
+    </div>
+    <div class="stat-card wide">
+      <h3>🏆 成就徽章</h3>
+      <div id="achvGrid" class="achv-grid"></div>
+    </div>
+  </section>
+
+  <footer class="foot">
+    <button class="btn ghost" id="exportBtn">📤 导出存档</button>
+    <button class="btn ghost" id="importBtn">📥 导入存档</button>
+    <input type="file" id="importFile" accept=".json,application/json" hidden>
+    <button class="btn danger" id="resetBtn">重置存档</button>
+    <span class="foot-note">v1.7 · 数据保存在本浏览器 localStorage，请定期导出备份</span>
+  </footer>
+
+  <!-- 任务模态框 -->
+  <div class="modal-backdrop" id="taskModal" hidden>
+    <form class="modal" id="taskForm">
+      <h3 id="taskModalTitle">讨伐新任务</h3>
+      <input type="hidden" id="taskId">
+      <label class="field">
+        <span>任务名称（要讨伐的怪物）</span>
+        <input type="text" id="taskTitle" maxlength="60" placeholder="例如：完成今日读书 30 分钟" required>
+      </label>
+      <label class="field">
+        <span>备注（可选）</span>
+        <textarea id="taskNote" maxlength="200" placeholder="补充细节…"></textarea>
+      </label>
+      <div class="field">
+        <span>怪物强度（难度越高，经验越多）</span>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="difficulty" value="easy">
+            <span class="opt-in"><img class="opt-ico" src="assets/icons/monster-easy.png" alt="">简单 <b>+10</b></span></label>
+          <label class="opt"><input type="radio" name="difficulty" value="normal">
+            <span class="opt-in"><img class="opt-ico" src="assets/icons/monster-normal.png" alt="">普通 <b>+20</b></span></label>
+          <label class="opt"><input type="radio" name="difficulty" value="hard">
+            <span class="opt-in"><img class="opt-ico" src="assets/icons/monster-hard.png" alt="">困难 <b>+40</b></span></label>
+          <label class="opt"><input type="radio" name="difficulty" value="epic">
+            <span class="opt-in"><img class="opt-ico" src="assets/icons/monster-epic.png" alt="">史诗 <b>+80</b></span></label>
+        </div>
+      </div>
+      <div class="field">
+        <span>属性类别（完成后累积对应四维属性）</span>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="category" value="focus"><span class="opt-in">🎯 专注</span></label>
+          <label class="opt"><input type="radio" name="category" value="body"><span class="opt-in">💪 体魄</span></label>
+          <label class="opt"><input type="radio" name="category" value="study"><span class="opt-in">📚 学识</span></label>
+          <label class="opt"><input type="radio" name="category" value="create"><span class="opt-in">✨ 创造</span></label>
+        </div>
+      </div>
+      <div class="field">
+        <span>重复方式</span>
+        <div class="opt-row">
+          <label class="opt"><input type="radio" name="repeat" value="once"><span class="opt-in">仅一次</span></label>
+          <label class="opt"><input type="radio" name="repeat" value="daily"><span class="opt-in">🔁 每日循环</span></label>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" data-close>取消</button>
+        <button type="submit" class="btn primary">出战</button>
+      </div>
+    </form>
+  </div>
+
+  <!-- Boss 模态框 -->
+  <div class="modal-backdrop" id="bossModal" hidden>
+    <form class="modal" id="bossForm">
+      <h3>编辑本周 Boss</h3>
+      <label class="field">
+        <span>Boss 名称</span>
+        <input type="text" id="bossTitle" maxlength="24" placeholder="例如：拖延魔王" required>
+      </label>
+      <label class="field">
+        <span>Boss 血量 HP（本周需要造成的伤害总量，击败任务怪物即造成等量经验伤害）</span>
+        <input type="number" id="bossHp" min="30" max="2000" step="10" value="300">
+      </label>
+      <div class="modal-actions">
+        <button type="button" class="btn ghost" data-close>取消</button>
+        <button type="submit" class="btn primary">保存</button>
+      </div>
+    </form>
+  </div>
+
+  <div class="toasts" id="toasts"></div>
+
+  <noscript>本看板需要启用 JavaScript 才能运行。</noscript>
+
+  <script src="js/game.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
