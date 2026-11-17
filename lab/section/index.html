@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <meta name="theme-color" content="#101820" />
+    <meta name="robots" content="noindex,follow" />
+    <link rel="canonical" href="https://section-lab-hw47h7ds6li.qoder.zone/" />
+    <meta
+      name="description"
+      content="截个面 SectionLab —— 三点定面，切开看。在立体图形的棱上选三个点，实时计算截面形状、面积与周长。"
+    />
+    <title>截个面 · SectionLab</title>
+    <link rel="icon" type="image/svg+xml" href="./favicon.svg" />
+    <script type="module" crossorigin src="./assets/index-DAiRQ_Vy.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-CdLUXNIs.css">
+  </head>
+  <body>
+    <div id="app">
+      <header id="topbar">
+        <div class="brand">
+          <h1>截个面 <span class="en">SectionLab</span></h1>
+          <p class="slogan">三点定面，切开看。</p>
+        </div>
+        <div class="topbar-actions">
+          <button
+            id="tutorial-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="tutorial-card"
+          >
+            教程
+          </button>
+          <button
+            id="rules-toggle"
+            type="button"
+            aria-expanded="false"
+            aria-controls="rules-dialog"
+          >
+            规则
+          </button>
+        </div>
+      </header>
+
+      <main id="workbench">
+        <aside id="control-panel" aria-label="立体选择与工具">
+          <section class="panel-block" aria-labelledby="solid-heading">
+            <h2 id="solid-heading" class="panel-title">立体图形</h2>
+            <div class="solid-options" role="group" aria-label="选择立体图形">
+              <button type="button" class="solid-button" data-solid="cube" aria-pressed="true">
+                <span class="solid-name">正方体</span>
+                <span class="solid-meta">棱长 1</span>
+              </button>
+              <button type="button" class="solid-button" data-solid="cuboid" aria-pressed="false">
+                <span class="solid-name">长方体</span>
+                <span class="solid-meta">4 × 3 × 2</span>
+              </button>
+              <button type="button" class="solid-button" data-solid="pyramid" aria-pressed="false">
+                <span class="solid-name">正四棱锥</span>
+                <span class="solid-meta">底 2 × 2 · 高 2</span>
+              </button>
+            </div>
+          </section>
+
+          <section class="panel-block" aria-labelledby="tools-heading">
+            <h2 id="tools-heading" class="panel-title">工具</h2>
+            <div class="tool-buttons">
+              <button id="reset-view" type="button" title="快捷键 R：恢复当前预设或默认状态，并复位视角">
+                复位
+              </button>
+              <button id="clear-points" type="button">清空点位</button>
+            </div>
+            <p class="hint">
+              点击棱放点 · 按住点沿棱拖动 · 空白处拖动旋转 · 滚轮 / 双指缩放 · R 复位
+            </p>
+          </section>
+        </aside>
+
+        <div id="drawer-scrim" hidden></div>
+
+        <section id="stage" aria-label="三维实验区">
+          <div id="webgl-fallback" hidden>
+            <div class="fallback-card">
+              <h2>无法启动三维渲染</h2>
+              <p id="webgl-fallback-reason">
+                当前浏览器或设备不支持 WebGL2。请改用最新版 Chrome / Edge / Firefox / Safari，或开启硬件加速后刷新页面。
+              </p>
+            </div>
+          </div>
+          <section id="tutorial-card" role="region" aria-label="新手教程" hidden>
+            <div class="tutorial-head">
+              <span class="tutorial-badge">教程</span>
+              <span id="tutorial-count" class="tutorial-count">1 / 7</span>
+              <button id="tutorial-exit" type="button">退出</button>
+            </div>
+            <div class="tutorial-scroll">
+              <h2 id="tutorial-title"></h2>
+              <p id="tutorial-body"></p>
+              <p id="tutorial-tip" class="tutorial-tip" hidden></p>
+            </div>
+            <div class="tutorial-foot">
+              <div id="tutorial-progress" class="tutorial-progress" aria-hidden="true"></div>
+              <div class="tutorial-actions">
+                <button id="tutorial-prev" type="button">上一步</button>
+                <button id="tutorial-next" type="button">下一步</button>
+                <button id="tutorial-rules" type="button">查看规则</button>
+              </div>
+            </div>
+          </section>
+        </section>
+
+        <aside id="data-panel" aria-label="截面数据与预设">
+          <div class="data-header">
+            <h2 class="panel-title">数据与预设</h2>
+            <span id="data-summary" class="data-summary" aria-hidden="true">截面未成形</span>
+            <button id="data-toggle" type="button" aria-expanded="true" aria-controls="data-body">
+              <span id="data-toggle-label">收起</span>
+              <span class="chevron" aria-hidden="true"></span>
+            </button>
+          </div>
+          <div id="data-body">
+            <section id="readout" aria-label="截面数据">
+              <div class="readout-grid">
+                <div class="readout-item">
+                  <span class="readout-label">截面形状</span>
+                  <span class="readout-value" id="ro-shape">—</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">截面边数</span>
+                  <span class="readout-value" id="ro-sides">—</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">截面面积</span>
+                  <span class="readout-value" id="ro-area">—</span>
+                </div>
+                <div class="readout-item">
+                  <span class="readout-label">截面周长</span>
+                  <span class="readout-value" id="ro-perimeter">—</span>
+                </div>
+              </div>
+              <p id="ro-status" class="readout-status" role="status" aria-live="polite">
+                尚未选满三个点，无法确定截平面。
+              </p>
+              <p class="readout-units">
+                单位：长度 = 模型单位，面积 = 单位²。正方体棱长 1；长方体 4 × 3 × 2；正四棱锥底面 2 × 2、高 2。
+              </p>
+            </section>
+
+            <section id="preset-section" aria-labelledby="preset-heading">
+              <h3 id="preset-heading" class="panel-title">预设截面</h3>
+              <div id="preset-list" class="preset-list" role="group" aria-label="六个预设截面"></div>
+              <p id="preset-note" class="preset-note" aria-live="polite">
+                选择一个预设观察典型截面，或直接在棱上点选三个点。
+              </p>
+            </section>
+          </div>
+        </aside>
+      </main>
+
+      <footer id="view-controls">
+        <button
+          id="drawer-toggle"
+          type="button"
+          aria-expanded="false"
+          aria-controls="control-panel"
+        >
+          工具
+        </button>
+        <div class="point-chips" aria-hidden="true">
+          <span class="point-chip point-chip--a" data-point="A">A</span>
+          <span class="point-chip point-chip--b" data-point="B">B</span>
+          <span class="point-chip point-chip--c" data-point="C">C</span>
+        </div>
+        <p class="hint hint--mobile">点棱放点 · 按住点拖动 · 空白旋转 · 双指缩放</p>
+        <p id="point-status" class="visually-hidden" role="status" aria-live="polite"></p>
+      </footer>
+    </div>
+
+    <div
+      id="rules-dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="rules-title"
+      hidden
+    >
+      <div class="rules-card">
+        <div class="rules-header">
+          <h2 id="rules-title">规则 <span class="rules-sub">截面是怎么定出来的</span></h2>
+          <button id="rules-close" type="button">关闭</button>
+        </div>
+        <div class="rules-body">
+          <section class="rules-section">
+            <h3>一、什么是截面</h3>
+            <ul>
+              <li>用一个平面去切立体，切口围成的闭合平面图形就是截面；实验台里荧光黄绿的填充与亮轮廓即截面。</li>
+              <li>截面的每条边是平面与立体某个面的交线，所以边数 = 平面穿过的面数：正方体最多 6 个面，截面最多 6 条边。</li>
+              <li>半透明的是立体本身，亮线是它的棱；截面永远画在实体之上，不会被挡住。</li>
+            </ul>
+          </section>
+          <section class="rules-section">
+            <h3>二、三点定面</h3>
+            <ul>
+              <li>不共线、不重合的三个点确定唯一平面——这是截面的唯一依据，点 A/B/C 就是这三个点。</li>
+              <li>三点共线或重合：定不出平面，状态行说明原因，不显示假数值。</li>
+              <li>三点极接近共线：仍计算，但提示截平面不稳定（软警告）。</li>
+              <li>截平面恰好与某个面重合：返回该面本身的边界（如正方体整面 = 正方形 1.000 / 4.000），属正确结果。</li>
+            </ul>
+          </section>
+          <section class="rules-section">
+            <h3>三、点与拖动</h3>
+            <ul>
+              <li>A/B/C 只能落在棱上：点击棱放点；满三点后再点新棱，循环替换最早的那个点。</li>
+              <li>按住点只沿它所在的棱拖动；靠近端点 / 中点自动吸附（容差 0.01），可以精确落在顶点上。</li>
+              <li>命中容差：鼠标 14px、触摸 26px（屏幕像素）；凑近缩放后点得更准。</li>
+            </ul>
+          </section>
+          <section class="rules-section">
+            <h3>四、数值怎么算</h3>
+            <ul>
+              <li>形状 / 边数 / 面积 / 周长全部由交点坐标实时计算：面积用平面内三角化求和，周长用环边长求和，不是写死的数字。</li>
+              <li>单位：长度 = 模型单位，面积 = 单位²。正方体棱长 1；长方体 4 × 3 × 2；正四棱锥底 2 × 2、高 2。</li>
+              <li>显示保留三位小数；单元测试与独立手算公式交叉验证到 1e-9。</li>
+            </ul>
+          </section>
+          <section class="rules-section">
+            <h3>五、视角与手势</h3>
+            <ul>
+              <li>位移 ≤ 8px 且 ≤ 600ms 的点击 / 轻点 = 放点；超过则视为拖动旋转，不放点。</li>
+              <li>空白处单指 / 左键拖动 = 旋转；滚轮 / 双指捏合 = 缩放；双指不会误放点。</li>
+              <li><kbd>R</kbd> 或"复位"：有激活预设时恢复该预设点位，否则清空点位；同时回标准视角。</li>
+              <li>窗口宽高比变化（横竖屏 / 面板折叠）时相机沿当前视线自动拉远保证完整入镜，不改变你的旋转角度。</li>
+            </ul>
+          </section>
+          <section class="rules-section">
+            <h3>六、预设</h3>
+            <ul>
+              <li>六个预设是典型截面（三角形 / 矩形 / 正六边形 / 正方形 / 五边形），坐标取规格精确值，一键放点并附教学说明。</li>
+              <li>预设所属立体与当前不同时自动切换；手动改点后预设高亮失效，表示已偏离预设。</li>
+              <li>"复位"恢复当前预设点位；"清空点位"只清点、不动预设记录。</li>
+            </ul>
+          </section>
+        </div>
+        <div class="rules-footer">
+          <button id="rules-start-tutorial" type="button">开始教程</button>
+          <button id="rules-done" type="button">知道了</button>
+        </div>
+      </div>
+    </div>
+
+    <noscript>
+      <div class="noscript-card">截个面 SectionLab 需要启用 JavaScript 才能运行三维实验台。</div>
+    </noscript>
+
+  </body>
+</html>
